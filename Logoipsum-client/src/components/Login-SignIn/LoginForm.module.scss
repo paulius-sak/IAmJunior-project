@@ -1,0 +1,54 @@
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.wrapper {
+  border-radius: 5px;
+  margin: 0 auto;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  box-shadow: #280b0b26 -0.125rem -0.125rem 0.5rem;
+  
+}
+
+
+.title {
+  color: var(--primary-color);
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  box-shadow: #280b0b26 -0.125rem -0.125rem 0.5rem;
+}
+
+input:hover {
+  border-color: #b6b3b3;
+}
+
+input:focus-visible {
+  outline-color: #8056eb;
+}
+
+.error {
+  color: var(--error);
+}
+
+.link {
+    color: blue;
+    font-weight: 500;
+}
