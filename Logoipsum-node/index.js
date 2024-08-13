@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
+import categoryRouter from "./src/routes/category.js";
+import businessRouter from "./src/routes/business.js"
 
 const app = express();
 
@@ -14,6 +16,13 @@ mongoose
   .catch((err) => {
     console.log("err: ", err);
   });
+
+app.use(categoryRouter);
+app.use(businessRouter);
+
+app.get("/", (req, res) => {
+  return res.status(200).json({ status: "Hello world" });
+});
 
 app.use((req, res) => {
   return res.status(404).json({ status: "Endpoint doesn't exist" });
