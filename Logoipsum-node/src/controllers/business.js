@@ -72,9 +72,36 @@ const GET_BUSINESSES_BY_CATEGORY = async (req, res) => {
   }
 };
 
+const UPDATE_BUSINESS = async (req, res) => {
+  try {
+    const updatedBusiness = await BusinessModel.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+
+    if (!updatedBusiness) {
+      return res.status(404).json({
+        message: `Business with id: ${req.params.id} was not found`,
+      });
+    }
+
+    return res.json({
+      status: "Business was updated",
+      business: updatedBusiness,
+    });
+  } catch (err) {
+    console.log("handled error: ", err);
+    return res
+      .status(500)
+      .json({ message: "An error occurred while updating the business" });
+  }
+};
+
 export {
   CREATE_BUSINESS,
   GET_ALL_BUSINESSES,
   GET_BUSINESS_BY_ID,
   GET_BUSINESSES_BY_CATEGORY,
+  UPDATE_BUSINESS,
 };
