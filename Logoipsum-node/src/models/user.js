@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const validateEmail = (email) => {
   // eslint-disable-next-line no-useless-escape
@@ -23,17 +23,17 @@ const userSchema = mongoose.Schema(
       trim: true,
       lowercase: true,
       unique: true,
-      required: "Email address is required",
-      validate: [validateEmail, "Please fill a valid email address"],
+      required: 'Email address is required',
+      validate: [validateEmail, 'Please fill a valid email address'],
       match: [
         // eslint-disable-next-line no-useless-escape
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please fill a valid email address",
+        'Please fill a valid email address',
       ],
     },
-    password: { type: String, required: true, minlength: 6, },
+    password: { type: String, required: true, minlength: 6 },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model('User', userSchema);

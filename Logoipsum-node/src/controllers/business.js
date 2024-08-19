@@ -1,10 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-import BusinessModel from "../models/business.js";
+import BusinessModel from '../models/business.js';
 
 const CREATE_BUSINESS = async (req, res) => {
   try {
     const business = new BusinessModel({
-      id: uuidv4(),
       name: req.body.name,
       about: req.body.about,
       address: req.body.address,
@@ -17,12 +15,10 @@ const CREATE_BUSINESS = async (req, res) => {
 
     const response = await business.save();
 
-    return res
-      .status(201)
-      .json({ status: "Business was created", response: response });
+    return res.status(201).json({ status: 'Business was created', response: response });
   } catch (err) {
-    console.log("handled error: ", err);
-    return res.status(500).json({ message: "error happened" });
+    console.log('handled error: ', err);
+    return res.status(500).json({ message: 'error happened' });
   }
 };
 
@@ -32,8 +28,8 @@ const GET_ALL_BUSINESSES = async (req, res) => {
 
     return res.json({ businesses: businesses });
   } catch (err) {
-    console.log("handled error: ", err);
-    return res.status(500).json({ message: "error happened" });
+    console.log('handled error: ', err);
+    return res.status(500).json({ message: 'error happened' });
   }
 };
 
@@ -49,8 +45,8 @@ const GET_BUSINESS_BY_ID = async (req, res) => {
 
     return res.json({ business: business });
   } catch (err) {
-    console.log("handled error: ", err);
-    return res.status(500).json({ message: "error happened" });
+    console.log('handled error: ', err);
+    return res.status(500).json({ message: 'error happened' });
   }
 };
 
@@ -67,18 +63,14 @@ const GET_BUSINESSES_BY_CATEGORY = async (req, res) => {
 
     return res.json({ businesses: businesses });
   } catch (err) {
-    console.log("handled error: ", err);
-    return res.status(500).json({ message: "error happened" });
+    console.log('handled error: ', err);
+    return res.status(500).json({ message: 'error happened' });
   }
 };
 
 const UPDATE_BUSINESS = async (req, res) => {
   try {
-    const updatedBusiness = await BusinessModel.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
+    const updatedBusiness = await BusinessModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
 
     if (!updatedBusiness) {
       return res.status(404).json({
@@ -87,21 +79,13 @@ const UPDATE_BUSINESS = async (req, res) => {
     }
 
     return res.json({
-      status: "Business was updated",
+      status: 'Business was updated',
       business: updatedBusiness,
     });
   } catch (err) {
-    console.log("handled error: ", err);
-    return res
-      .status(500)
-      .json({ message: "An error occurred while updating the business" });
+    console.log('handled error: ', err);
+    return res.status(500).json({ message: 'An error occurred while updating the business' });
   }
 };
 
-export {
-  CREATE_BUSINESS,
-  GET_ALL_BUSINESSES,
-  GET_BUSINESS_BY_ID,
-  GET_BUSINESSES_BY_CATEGORY,
-  UPDATE_BUSINESS,
-};
+export { CREATE_BUSINESS, GET_ALL_BUSINESSES, GET_BUSINESS_BY_ID, GET_BUSINESSES_BY_CATEGORY, UPDATE_BUSINESS };
