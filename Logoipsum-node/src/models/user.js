@@ -12,12 +12,12 @@ const capitalizeFirstLetter = (string) => {
 
 const userSchema = mongoose.Schema(
   {
-    id: { type: String, required: true },
     name: {
       type: String,
       required: true,
       set: capitalizeFirstLetter,
     },
+    age: { type: Number },
     email: {
       type: String,
       trim: true,
@@ -31,8 +31,7 @@ const userSchema = mongoose.Schema(
         "Please fill a valid email address",
       ],
     },
-    password: { type: String, required: true },
-    date: { type: Date, default: Date.now },
+    password: { type: String, required: true, minlength: 6, },
   },
   { timestamps: true }
 );
