@@ -6,13 +6,14 @@ import {
   GET_BUSINESSES_BY_CATEGORY,
   UPDATE_BUSINESS,
 } from '../controllers/business.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
-router.post('/businesses', CREATE_BUSINESS);
+router.post('/businesses', auth, CREATE_BUSINESS);
 router.get('/businesses', GET_ALL_BUSINESSES);
 router.get('/businesses/:id', GET_BUSINESS_BY_ID);
 router.get('/businesses/category/:category', GET_BUSINESSES_BY_CATEGORY);
-router.put('/businesses/:id', UPDATE_BUSINESS);
+router.put('/businesses/:id', auth, UPDATE_BUSINESS);
 
 export default router;
