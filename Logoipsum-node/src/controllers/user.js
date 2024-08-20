@@ -116,9 +116,10 @@ const UPDATE_USER = async (req, res) => {
       });
     }
 
-    if (name) user.name = name;
-    if (age) user.age = age;
-    if (email) user.email = email;
+    name && (user.name = name);
+    age && (user.age = age);
+    email && (user.email = email);
+
     if (password) {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
