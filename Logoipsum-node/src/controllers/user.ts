@@ -1,12 +1,14 @@
-import bcrypt from 'bcrypt';
-import UserModel from '../models/user.js';
+import { Request, Response } from 'express';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import UserModel from '../models/user';
 
-const SIGN_UP = async (req, res) => {
+const SIGN_UP = async (req: Request, res: Response): Promise<void> => {
   try {
     const existingUser = await UserModel.findOne({ email: req.body.email });
     if (existingUser) {
-      return res.status(400).json({ message: 'Email is already registered' });
+      res.status(400).json({ message: 'Email is already registered' });
+      return;
     }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(req.body.password, salt);
@@ -20,30 +22,37 @@ const SIGN_UP = async (req, res) => {
 
     const response = await user.save();
 
-    return res.status(201).json({ status: 'User sign-up successful', response: response });
+    res.status(201).json({ status: 'User sign-up successful', response: response });
   } catch (err) {
     console.log('handled error: ', err);
-    return res.status(500).json({ message: 'error happened' });
+    res.status(500).json({ message: 'error happened' });
+    return;
   }
 };
 
-const LOGIN = async (req, res) => {
+const LOGIN = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await UserModel.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(400).json({ message: 'Invalid email or password' });
+      res.status(400).json({ message: 'Invalid email or password' });
+      return;
     }
 
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid email or password' });
+      res.status(400).json({ message: 'Invalid email or password' });
+      return;
     }
 
-    const token = jwt.sign({ user: { _id: user._id, name: user.name, email: user.email } }, process.env.JWT_SECRET, {
-      expiresIn: '24h',
-    });
+    const token = jwt.sign(
+      { user: { _id: user._id, name: user.name, email: user.email } },
+      process.env.JWT_SECRET as jwt.Secret,
+      {
+        expiresIn: '24h',
+      },
+    );
 
-    return res.status(200).json({
+    res.status(200).json({
       message: 'Login successful',
       token: token,
       user: {
@@ -54,66 +63,73 @@ const LOGIN = async (req, res) => {
     });
   } catch (err) {
     console.log('Handled error: ', err);
-    return res.status(500).json({ message: 'An error occurred during login' });
+    res.status(500).json({ message: 'An error occurred during login' });
+    return;
   }
 };
 
-const GET_ALL_USERS = async (req, res) => {
+const GET_ALL_USERS = async (req: Request, res: Response): Promise<void> => {
   try {
     const users = await UserModel.find().select('-password');
 
-    return res.json({ users: users });
+    res.json({ users: users });
   } catch (err) {
     console.log('handled error: ', err);
-    return res.status(500).json({ message: 'error happened' });
+    res.status(500).json({ message: 'error happened' });
+    return;
   }
 };
 
-const GET_USERS_BY_ID = async (req, res) => {
+const GET_USERS_BY_ID = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await UserModel.findOne({ _id: req.params.id }).select('-password');
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         message: `User with id: ${{ _id: req.params.id }} was not found`,
       });
+      return;
     }
 
-    return res.json({ user: user });
+    res.json({ user: user });
   } catch (err) {
     console.log('handled error: ', err);
-    return res.status(500).json({ message: 'error happened' });
+    res.status(500).json({ message: 'error happened' });
+    return;
   }
 };
 
-const DELETE_USER = async (req, res) => {
+const DELETE_USER = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await UserModel.findOneAndDelete({ _id: req.params.id });
 
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         message: `User with id: ${{ _id: req.params.id }} was not found`,
       });
+      return;
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       message: `User with id: ${{ _id: req.params.id }} has been deleted successfully`,
     });
   } catch (err) {
     console.log('handled error: ', err);
-    return res.status(500).json({ message: 'error happened' });
+    res.status(500).json({ message: 'error happened' });
+    return;
   }
 };
 
-const UPDATE_USER = async (req, res) => {
+const UPDATE_USER = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, age, email, password } = req.body;
 
     const user = await UserModel.findById({ _id: req.params.id });
     if (!user) {
-      return res.status(404).json({
+      res.status(404).json({
         message: `User with id: ${{ _id: req.params.id }} was not found`,
       });
+      return;
     }
 
     name && (user.name = name);
@@ -127,13 +143,14 @@ const UPDATE_USER = async (req, res) => {
 
     const updatedUser = await user.save();
 
-    return res.status(200).json({
+    res.status(200).json({
       message: `User with id: ${req.params.id} has been updated successfully`,
       user: updatedUser,
     });
   } catch (err) {
     console.log('Handled error: ', err);
-    return res.status(500).json({ message: 'An error occurred during the update' });
+    res.status(500).json({ message: 'An error occurred during the update' });
+    return;
   }
 };
 

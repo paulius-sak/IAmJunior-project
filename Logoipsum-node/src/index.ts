@@ -2,9 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import 'dotenv/config';
-import categoryRouter from './src/routes/category.js';
-import businessRouter from './src/routes/business.js';
-import userRouter from './src/routes/user.js';
+import categoryRouter from './routes/category';
+import businessRouter from './routes/business';
+import userRouter from './routes/user';
 
 const app = express();
 
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect(process.env.MONGO_CONNECTION)
+  .connect(process.env.MONGO_CONNECTION as string)
   .then(() => console.log('MongoDb Connected!'))
   .catch((err) => {
     console.log('err: ', err);

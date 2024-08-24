@@ -1,6 +1,6 @@
 import express from 'express';
-import { CREATE_CATEGORY, GET_ALL_CATEGORIES } from '../controllers/category.js';
-import auth from '../middleware/auth.js';
+import { CREATE_CATEGORY, GET_ALL_CATEGORIES } from '../controllers/category';
+import auth from '../middleware/auth';
 
 const router = express.Router();
 

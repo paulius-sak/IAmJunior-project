@@ -5,8 +5,8 @@ import {
   GET_BUSINESS_BY_ID,
   GET_BUSINESSES_BY_CATEGORY,
   UPDATE_BUSINESS,
-} from '../controllers/business.js';
-import auth from '../middleware/auth.js';
+} from '../controllers/business';
+import auth from '../middleware/auth';
 
 const router = express.Router();
 
