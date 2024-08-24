@@ -1,11 +1,19 @@
 import styles from "./Navbar.module.scss";
 import Logo from "../../assets/logo.svg";
-import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../router/consts";
 
-const Navbar = ({ links }) => {
+interface Links {
+  id: string;
+  label: string;
+  href: string;
+}
+interface LinksProps {
+  links: Links[];
+}
+
+const Navbar = ({ links }: LinksProps) => {
   return (
     <section className={styles.wrapper}>
       <section className={styles.logoMenuWrapper}>
@@ -31,16 +39,6 @@ const Navbar = ({ links }) => {
       </section>
     </section>
   );
-};
-
-Navbar.propTypes = {
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      href: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    })
-  ).isRequired,
 };
 
 export default Navbar;

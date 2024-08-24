@@ -2,7 +2,13 @@ import PropTypes from "prop-types";
 import styles from "./UrlIcon.module.scss";
 import classNames from "classnames";
 
-const UrlIcon = ({ className, style = {}, url }) => {
+interface UrlIcon {
+  url: string;
+  className?: string;
+  style: {};
+}
+
+const UrlIcon = ({ className, style, url }: UrlIcon) => {
   return (
     <div
       className={classNames(styles.icon, className)}

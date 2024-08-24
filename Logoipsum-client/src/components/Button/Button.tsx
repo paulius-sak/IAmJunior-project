@@ -1,8 +1,13 @@
-import PropTypes from "prop-types";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
+import { ButtonHTMLAttributes, FC } from "react";
 
-const Button = ({ className, rounded, ...props }) => {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+  rounded?: boolean;
+}
+
+const Button = ({ className, rounded, ...props }: ButtonProps) => {
   return (
     <button
       className={classNames(
@@ -13,11 +18,6 @@ const Button = ({ className, rounded, ...props }) => {
       {...props}
     />
   );
-};
-
-Button.propTypes = {
-  className: PropTypes.string,
-  rounded: PropTypes.bool,
 };
 
 export default Button;

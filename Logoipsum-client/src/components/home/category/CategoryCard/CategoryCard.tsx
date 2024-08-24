@@ -4,7 +4,18 @@ import styles from "./CategoryCard.module.scss";
 import UrlIcon from "../../../common/UrlIcon";
 import { ROUTES } from "../../../../router/consts";
 
-const CategoryCard = ({ category }) => {
+interface Category {
+  id: number;
+  name: string;
+  color: string;
+  url: string;
+}
+
+interface CategoryCardProps {
+  category: Category;
+}
+
+const CategoryCard = ({ category }: CategoryCardProps) => {
   const { name } = category;
   const navigate = useNavigate();
 

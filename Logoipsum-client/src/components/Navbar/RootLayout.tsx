@@ -3,6 +3,7 @@ import Navbar from "./Navbar"
 import Links from "../../constants/Links"
 import styles from "./RootLayout.module.scss"
 
+
 const RootLayout = () => {
   return (
     <>

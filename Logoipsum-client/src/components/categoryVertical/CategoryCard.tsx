@@ -1,11 +1,21 @@
 import { useNavigate, generatePath, useParams } from "react-router-dom";
 import classNames from "classnames";
-import PropTypes from "prop-types";
 import styles from "./CategoryCard.module.scss";
 import UrlIcon from "../common/UrlIcon";
 import { ROUTES } from "../../router/consts";
 
-const CategoryCard = ({ category }) => {
+interface Category {
+  id: number;
+  name: string;
+  color: string;
+  url: string;
+}
+
+interface CategoryCardProps {
+  category: Category;
+}
+
+const CategoryCard = ({ category }: CategoryCardProps) => {
   const params = useParams();
   const { name } = category;
   const navigate = useNavigate();
@@ -30,13 +40,5 @@ const CategoryCard = ({ category }) => {
   );
 };
 
-CategoryCard.propTypes = {
-  category: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    name: PropTypes.string.isRequired,
-    color: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default CategoryCard;

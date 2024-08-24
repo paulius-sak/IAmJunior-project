@@ -1,10 +1,28 @@
 import styles from "./BusinessCard.module.scss";
 import Button from "../../../Button/Button";
-import PropTypes from "prop-types";
 import { FaRegStar } from "react-icons/fa";
 // import { FaStar } from "react-icons/fa";
 
-const BusinessCard = ({ business }) => {
+interface Image {
+  url: string;
+}
+
+interface Business {
+  _id: string;
+  name: string;
+  about?: string;
+  address: string;
+  category: string;
+  contactPerson: string;
+  email: string;
+  images: Image[];
+}
+
+interface BusinessCardProps {
+  business: Business;
+}
+
+const BusinessCard = ({ business }: BusinessCardProps) => {
   return (
     <div className={styles.card}>
       {business.images.length && (
@@ -31,21 +49,5 @@ const BusinessCard = ({ business }) => {
   );
 };
 
-BusinessCard.propTypes = {
-  business: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    about: PropTypes.string,
-    address: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
-    contactPerson: PropTypes.string,
-    email: PropTypes.string,
-    images: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-      })
-    ),
-  }).isRequired,
-};
 
 export default BusinessCard;
