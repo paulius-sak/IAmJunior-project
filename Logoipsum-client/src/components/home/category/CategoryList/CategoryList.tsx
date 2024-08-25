@@ -1,13 +1,13 @@
 import styles from "./CategoryList.module.scss";
-import categories from "../../../../constants/Categories";
 import CategoryCard from "../CategoryCard/CategoryCard";
+import { CategoryListProps } from "../../../../types/categories";
 
 
-const CategoryList = () => {
+const CategoryList = ({categories}: CategoryListProps ) => {
   return (
     <section className={styles.wrapper}>
       {categories.map((category) => (
-        <CategoryCard key={category.id} category={category} />
+        <CategoryCard key={category._id} category={category} />
       ))}
     </section>
   );

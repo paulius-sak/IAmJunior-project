@@ -9,6 +9,8 @@ import SearchCategory from "./pages/SearchCategory";
 import { ROUTES } from "./router/consts";
 import RootLayout from "./components/Navbar/RootLayout";
 
+
+
 const router = createBrowserRouter([
   {
     element: <RootLayout />,
