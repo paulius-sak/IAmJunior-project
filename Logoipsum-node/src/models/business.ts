@@ -1,5 +1,9 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 
+interface IImage {
+  url: string;
+}
+
 interface IBusiness extends Document {
   name: string;
   about: string;
@@ -7,9 +11,13 @@ interface IBusiness extends Document {
   category: string;
   contactPerson: string;
   email: string;
-  images: string[];
+  images: IImage[];
   user_id: string;
 }
+
+const imageSchema = new Schema<IImage>({
+  url: { type: String, required: true,  }
+});
 
 const businessSchema = new mongoose.Schema<IBusiness>(
   {
@@ -19,17 +27,7 @@ const businessSchema = new mongoose.Schema<IBusiness>(
     category: { type: String, required: true },
     contactPerson: { type: String, required: true },
     email: { type: String, required: true },
-    images: [
-      {
-        type: String,
-        required: true,
-        default: [
-          {
-            url: 'https://st4.depositphotos.com/14953852/24787/v/380/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg',
-          },
-        ],
-      },
-    ],
+    images: [imageSchema],
     user_id: { type: String, required: true },
   },
   { timestamps: true },

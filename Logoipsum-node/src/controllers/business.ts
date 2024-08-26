@@ -25,7 +25,7 @@ const CREATE_BUSINESS = async (req: Request<{}, {}, CreateBusinessRequestBody>, 
       category: req.body.category,
       contactPerson: req.body.contactPerson,
       email: req.body.email,
-      images: req.body.images.map((img: Image) => ({ url: img.url })),
+      images: req.body.images,
       user_id: req.body.id,
     });
 

@@ -5,6 +5,6 @@ import auth from '../middleware/auth';
 const router = express.Router();
 
 router.post('/categories', auth, CREATE_CATEGORY);
-router.get('/categories',auth, GET_ALL_CATEGORIES);
+router.get('/categories', GET_ALL_CATEGORIES);
 
 export default router;
