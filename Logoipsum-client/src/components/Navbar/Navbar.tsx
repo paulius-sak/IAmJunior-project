@@ -3,17 +3,20 @@ import Logo from "../../assets/logo.svg";
 import Button from "../Button/Button";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../router/consts";
+import { User } from "../../types/users";
+import Avatar from "../Avatar/Avatar";
 
 interface Links {
   id: string;
   label: string;
   href: string;
 }
-interface LinksProps {
+interface NavbarProps {
   links: Links[];
+  user: User | null;
 }
 
-const Navbar = ({ links }: LinksProps) => {
+const Navbar = ({ links, user }: NavbarProps) => {
   return (
     <section className={styles.wrapper}>
       <section className={styles.logoMenuWrapper}>
@@ -33,9 +36,13 @@ const Navbar = ({ links }: LinksProps) => {
         </nav>
       </section>
       <section className={styles.buttonWrapper}>
-        <Link to={ROUTES.LOGIN}>
-          <Button> Login / Sign Up</Button>
-        </Link>
+        {user ? (
+          <Avatar>{user.email[0]}</Avatar>
+        ) : (
+          <Link to={ROUTES.LOGIN}>
+            <Button> Login / Sign Up</Button>
+          </Link>
+        )}
       </section>
     </section>
   );

@@ -11,3 +11,7 @@ export interface Business {
   email: string;
   images: Image[];
 }
+
+export interface BusinessesResponse {
+  businesses: Business[];
+}

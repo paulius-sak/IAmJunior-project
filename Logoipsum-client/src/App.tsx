@@ -8,8 +8,7 @@ import Login from "./pages/Login";
 import SearchCategory from "./pages/SearchCategory";
 import { ROUTES } from "./router/consts";
 import RootLayout from "./components/Navbar/RootLayout";
-
-
+import { UserProvider } from "./context/UserContext";
 
 const router = createBrowserRouter([
   {
@@ -42,9 +41,9 @@ const router = createBrowserRouter([
 
 const App = () => {
   return (
-
+    <UserProvider> 
       <RouterProvider router={router} />
-
+    </UserProvider>
   );
 };
 

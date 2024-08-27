@@ -23,11 +23,12 @@ interface BusinessCardProps {
 }
 
 const BusinessCard = ({ business }: BusinessCardProps) => {
+  const images = business.images || []
   return (
     <div className={styles.card}>
-      {business.images.length && (
+      {images.length > 0 && (
         <img
-          src={business.images[0].url}
+          src={images[0].url}
           alt={business.name}
           className={styles.image}
         />

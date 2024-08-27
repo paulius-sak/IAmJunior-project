@@ -1,7 +1,7 @@
 import AxiosInstance from "./axiosInstance";
-import { Business } from "../types/business";
+import { Business, BusinessesResponse } from "../types/business";
 
-export const fetchBusinesses = async (): Promise<Business> => {
-    const response = await AxiosInstance.get("/categories")
-    return response.data
+export const fetchBusinesses = async (): Promise<BusinessesResponse> => {
+    const response = await AxiosInstance.get("/businesses")
+    return { businesses: response.data.businesses }
 }
