@@ -5,4 +5,7 @@ export const ROUTES = {
   LOGIN: "/login",
   SIGN_IN: "/sign-in",
   SEARCH_CATEGORY: "/search/:category",
+  MYACCOUNT: "/my-account",
+  MYBOOKINGS: "/my-bookings",
+  BUSINESS: "/business/:id",
 };

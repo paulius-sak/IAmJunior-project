@@ -15,3 +15,6 @@ export interface Business {
 export interface BusinessesResponse {
   businesses: Business[];
 }
+export interface BusinessResponse {
+  businesses: Business;
+}

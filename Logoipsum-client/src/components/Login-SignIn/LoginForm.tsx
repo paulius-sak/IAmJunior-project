@@ -29,16 +29,15 @@ const LoginForm = () => {
     try {
       const response = await FetchLoginUser(email, password);
 
-      // Assuming FetchLoginUser returns an object with token and user info
+
       const { token, user } = response;
 
-      // Save token to local storage
       localStorage.setItem('token', token);
 
-      // Set user data in context
+
       login(user);
 
-      // Redirect to home page
+
       navigate(ROUTES.HOME);
     } catch (error) {
       console.error("Login failed:", error);

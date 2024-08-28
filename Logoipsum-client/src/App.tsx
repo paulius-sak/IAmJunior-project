@@ -9,6 +9,9 @@ import SearchCategory from "./pages/SearchCategory";
 import { ROUTES } from "./router/consts";
 import RootLayout from "./components/Navbar/RootLayout";
 import { UserProvider } from "./context/UserContext";
+import MyAccount from "./pages/MyAccount";
+import MyBookings from "./pages/MyBookings";
+import Business from "./pages/Business";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,18 @@ const router = createBrowserRouter([
       {
         path: ROUTES.SEARCH_CATEGORY,
         element: <SearchCategory />,
+      },
+      {
+        path: ROUTES.MYACCOUNT,
+        element: <MyAccount />,
+      },
+      {
+        path: ROUTES.MYBOOKINGS,
+        element: <MyBookings />,
+      },
+      {
+        path: ROUTES.BUSINESS,
+        element: <Business />,
       },
     ],
   },

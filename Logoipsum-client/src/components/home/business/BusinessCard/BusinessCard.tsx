@@ -1,6 +1,8 @@
 import styles from "./BusinessCard.module.scss";
 import Button from "../../../Button/Button";
 import { FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../../router/consts";
 // import { FaStar } from "react-icons/fa";
 
 interface Image {
@@ -24,6 +26,7 @@ interface BusinessCardProps {
 
 const BusinessCard = ({ business }: BusinessCardProps) => {
   const images = business.images || []
+  const id = business._id
   return (
     <div className={styles.card}>
       {images.length > 0 && (
@@ -38,7 +41,7 @@ const BusinessCard = ({ business }: BusinessCardProps) => {
         <h3 className={styles.name}>{business.name}</h3>
         <p className={styles.contactPerson}>{business.contactPerson}</p>
         <p className={styles.address}>{business.address}</p>
-        <Button>Book now</Button>
+        <Link to={`${ROUTES.BUSINESS.replace(":id", id)}`}><Button>Book now</Button></Link>
       </div>
 
       <div className={styles.favoritesIconWrapper}>

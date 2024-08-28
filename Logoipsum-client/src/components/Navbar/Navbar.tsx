@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../router/consts";
 import { User } from "../../types/users";
 import Avatar from "../Avatar/Avatar";
+import AvatarMenu from "./AvatarMenu/AvatarMenu";
+import { useState } from "react";
 
 interface Links {
   id: string;
@@ -17,6 +19,18 @@ interface NavbarProps {
 }
 
 const Navbar = ({ links, user }: NavbarProps) => {
+  const [isProfileMenu, setProfileMenu] = useState(false);
+
+  const avatarDropdown = () => {
+    setProfileMenu(!isProfileMenu)
+  }
+
+  const closeMenu = () => {
+    setProfileMenu(false);
+  };
+
+ 
+
   return (
     <section className={styles.wrapper}>
       <section className={styles.logoMenuWrapper}>
@@ -37,13 +51,16 @@ const Navbar = ({ links, user }: NavbarProps) => {
       </section>
       <section className={styles.buttonWrapper}>
         {user ? (
-          <Avatar>{user.email[0]}</Avatar>
+          <Button onClick={avatarDropdown} className={styles.dropdownBtn}>
+            <Avatar>{user.email[0]}</Avatar>
+          </Button>
         ) : (
           <Link to={ROUTES.LOGIN}>
             <Button> Login / Sign Up</Button>
           </Link>
         )}
       </section>
+      {isProfileMenu && <AvatarMenu closeMenu={closeMenu} ></AvatarMenu>}
     </section>
   );
 };
