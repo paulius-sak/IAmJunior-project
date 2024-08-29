@@ -52,7 +52,7 @@ const GET_ALL_BUSINESSES = async (req: Request, res: Response): Promise<void> =>
 const GET_BUSINESS_BY_ID = async (req: Request<{ id: string }>, res: Response): Promise<void> => {
   try {
     const business = await BusinessModel.findOne({ _id: req.params.id });
-
+  
     if (!business) {
       res.status(404).json({
         message: `Business with id: ${req.params.id} was not found`,
