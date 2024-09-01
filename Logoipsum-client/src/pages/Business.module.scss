@@ -1,0 +1,23 @@
+.sliderWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.mainBusinessInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.businessWrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 4rem;
+}
+
+.secondaryBusinessInfo {
+    display: flex;
+    flex-direction: column;
+
+}

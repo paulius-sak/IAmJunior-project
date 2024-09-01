@@ -30,11 +30,9 @@ const BusinessList = ({
   category,
   className,
 }: BusinessListProps) => {
-  console.log("Received businesses:", businesses);
   const filteredBusinesses = category
     ? businesses.filter((business) => business.category === category)
     : businesses;
-  console.log("Filtered businesses:", filteredBusinesses);
   return (
     <div className={classNames(styles.wrapper, className)}>
       {!filteredBusinesses.length ? (

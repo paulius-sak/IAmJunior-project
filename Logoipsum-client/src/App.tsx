@@ -12,6 +12,8 @@ import { UserProvider } from "./context/UserContext";
 import MyAccount from "./pages/MyAccount";
 import MyBookings from "./pages/MyBookings";
 import Business from "./pages/Business";
+import '@mantine/core/styles.css';
+import { MantineProvider } from '@mantine/core';
 
 const router = createBrowserRouter([
   {
@@ -54,11 +56,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+
+
 const App = () => {
   return (
+    <MantineProvider>
     <UserProvider> 
       <RouterProvider router={router} />
     </UserProvider>
+    </MantineProvider>
   );
 };
 
