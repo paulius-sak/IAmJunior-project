@@ -11,6 +11,7 @@ import Appointment from "../components/BusinessId/Appointment";
 import SimilarBusiness from "../components/BusinessId/SimilarBusiness";
 
 
+
 const Business = () => {
   const [business, setBusiness] = useState<BusinessType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,6 +53,8 @@ const Business = () => {
           <SimilarBusiness category={business.category} currentBusinessId={business._id} />
         )}
       </section>
+
+      
     </section>
   );
 };

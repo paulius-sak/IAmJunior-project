@@ -11,6 +11,7 @@ export interface Business {
   contactPerson: string;
   email: string;
   images: Image[];
+  bookingHours: string[];
 }
 
 export interface BusinessesResponse {

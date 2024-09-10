@@ -1,3 +1,29 @@
+.similarBusinessWrapper {
+  margin-top: 3rem;
+}
+
+a {
+  all: unset;
+}
+
+.business {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border);
+}
+
+.business:hover {
+  box-shadow: rgba(86, 20, 208, 0.25) 5px 5px 15px;
+}
+
 .similarAvatar {
-    width: 50%;
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 1rem;
 }

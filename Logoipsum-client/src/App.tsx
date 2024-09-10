@@ -12,8 +12,9 @@ import { UserProvider } from "./context/UserContext";
 import MyAccount from "./pages/MyAccount";
 import MyBookings from "./pages/MyBookings";
 import Business from "./pages/Business";
-import '@mantine/core/styles.css';
 import { MantineProvider } from '@mantine/core';
+
+
 
 const router = createBrowserRouter([
   {
